@@ -1,0 +1,119 @@
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube Like</title>
+    <link rel="stylesheet" href="/css/main.css">
+    <link rel="icon" type="image/png" href="/img/youtube.png">
+</head>
+
+<body>
+    <div class="content">
+        <nav>
+            <div class="nav-left">
+                <div>
+                    <a href="#"><img class="yt-menu" src="/img/menu.svg" alt="menu"></a>
+                </div>
+                <div>
+                    <a class="main-logo" href="/">
+
+                        <img class="yt-logo" src="/img/youtube.svg" alt="ytlogo"> <span class="logo-text"> YouTube
+                        </span>
+                    </a>
+                </div>
+
+            </div>
+
+            <!-- form  -->
+
+            <form class="form-container" autocomplete="off" action="/" method="POST">
+                <input class="input-search" type="text" name="search" placeholder="Search" required>
+                <button class="btn-search"> <img class="yt-search" src="/img/search.svg" alt="search"> </button>
+            </form>
+
+            <div class="nav-right">
+                <a href="#"><img class="yt-notifications" src="/img/notifications.svg" alt="notifications"></a>
+                <a href="#"><img class="yt-grid" src="/img/grid.svg" alt="grid"></a>
+                <a href="#"><img class="yt-user" src="/img/user.svg" alt="user"></a>
+            </div>
+        </nav>
+
+        <h1 class="yt-like-title">YouTube <span> Like </span></h1>
+
+        <!-- results  -->
+        <div class="results">
+            <!-- IF SUCCESS IS TRUE LOOP THROUGH RESULTS -->
+            <% if(success){%>
+            <% data.map(d=>{ %>
+            <div class="yt-card">
+                <!-- IMAGE  -->
+                <img class="yt-img" src="<%= d.snippet.thumbnails.medium.url%>" alt="thumbnails">
+                <!-- VIDEO -->
+                <iframe class="yt-iframe hide" src="https://www.youtube.com/embed/<%= d.id.videoId %>" frameborder="0"
+                    allow="accelerometer; autoplay=" off " encrypted-media; gyroscope; picture-in-picture"
+                    allowfullscreen></iframe>
+                <button class="btn-hide hide"><img src="/img/cancel.svg" alt=""></button>
+                <!-- CARD INFO  -->
+                <div class="yt-card-info">
+                    <!-- PROFILE IMAGE  -->
+                    <div class="yt-card-profile-img">
+                        <a href="https://www.youtube.com/channel/<%= d.snippet.channelId %>"><img class="yt-info-user"
+                                src="/img/user.svg" alt="user"></a>
+                    </div>
+                    <div class="yt-card-info-data">
+                        <!-- TITLE  -->
+                        <div class="yt-card-title"> <strong>Title:</strong>
+                            <%=d.snippet.title%>
+                        </div>
+                        <!-- CHANNEL  -->
+                        <div class="yt-card-channel"> <strong> Channel: </strong>
+                            <a href="https://www.youtube.com/channel/<%= d.snippet.channelId %>" target="blank">
+                                <%= d.snippet.channelTitle %>
+                            </a>
+                        </div>
+                        <!-- DATE  -->
+                        <div class="yt-card-date"><strong>Published: </strong>
+                            <%- 
+                             new Date(d.snippet.publishedAt).toLocaleDateString('it-IT', { day: 'numeric', month: 'numeric', year: 'numeric', hour:'numeric', minute:'numeric' })
+                                %>
+                        </div>
+                        <!-- DESC  -->
+                        <div class="yt-card-desc"><strong>Description: </strong>
+                            <%=d.snippet.description%>
+                        </div>
+                    </div>
+                    <!-- END INFO CARD  -->
+                </div>
+                <!-- END CARD  -->
+            </div>
+
+            <% }) %>
+            <!-- IF SUCCESS IS FALSE EMPTY IMAGE -->
+            <%} else if(!success) {%>
+
+            <img src="/img/empty-battery.svg" alt="" class="yt-card-empty">
+
+            <% } %>
+
+        </div>
+        <!-- NAVIGATION  -->
+        <div class="navigation">
+            <% if(prev !== ''){%>
+            <a href="/page/<%= q %>/<%= prev %>" class="prev">
+                <img src="/img/left-arrow.svg" alt="left-arrow">
+            </a>
+            <% } %>
+            <% if(next !== ''){%>
+            <a href="/page/<%= q %>/<%= next %>" class="next">
+                <img src="/img/right-arrow.svg" alt="right-arrow">
+            </a>
+            <% } %>
+
+        </div>
+    </div>
+
+    <script src="/js/main.js"></script>
+</body>
+
+</html>
