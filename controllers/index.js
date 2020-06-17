@@ -150,6 +150,11 @@ exports.searchVideos = async (req, res, next) => {
 // GET NAVIGATION
 exports.navVideos = async (req, res, next) => {
     try {
+        // Vars init
+        let next = '';
+        let prev = '';
+        let total = 0;
+        let perPage = 0;
         let pageCode = req.params.id;
         let q = req.params.q;
         // console.log(pageCode);
