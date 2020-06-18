@@ -310,3 +310,38 @@ div.yt-card-desc strong {
     object-fit: cover;
     margin: auto
 }
+
+/* LOADER  */
+.spinner {
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    border: 6px solid #999999;
+    border-right-color: var(--main-red);
+    border-radius: 50%;
+    height: 50px;
+    width: 50px;
+    animation: spin 1.5s linear infinite;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.6s ease;
+
+}
+
+@keyframes spin {
+    from {
+        transform: rotate(0deg);
+    }
+
+    to {
+        transform: rotate(360deg);
+
+    }
+}
+
+.spinner.show-loader {
+    box-shadow: 0 0 0 200vh rgba(0, 0, 0, .88);
+    visibility: visible;
+    opacity: 1;
+}

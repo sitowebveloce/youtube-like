@@ -5,6 +5,7 @@ const ytIframe = Array.prototype.slice.call(document.querySelectorAll('.yt-ifram
 const btnHide = Array.prototype.slice.call(document.querySelectorAll('.btn-hide'));
 const nextBtn = document.querySelector('.next');
 const prevBtn = document.querySelector('.prev');
+const loader = document.querySelector('.spinner');
 
 // Scroll on top
 const onTop = () => {
@@ -17,7 +18,6 @@ const onTop = () => {
 };
 // ADD EVENT LISTENER ON IMAGE TO SHOW VIDEO IN FULL SCREEN
 if (ytImg !== null) {
-
     ytImg.map((y, indx) => {
         y.addEventListener('click', () => {
             // Scroll on top
@@ -50,4 +50,8 @@ if (ytImg !== null) {
             })
         });
     })
+    // Hide loader
+    setTimeout(() => {
+        loader.classList.remove('show-loader');
+    }, 1000);
 }
