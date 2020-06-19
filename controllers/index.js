@@ -22,7 +22,7 @@ exports.getVideos = async (req, res, next) => {
             maxResults: 12, // MAX RESULTS
             type: 'video',
             order: 'viewCount',
-            q: q, // query to search
+            q: q // query to search
         });
         if (ytRes) {
             // Show Results
@@ -39,7 +39,6 @@ exports.getVideos = async (req, res, next) => {
                     total,
                     perPage,
                     q,
-                    isFetching: false,
                     data: []
                 });
             }
@@ -62,7 +61,6 @@ exports.getVideos = async (req, res, next) => {
                 total,
                 perPage,
                 q,
-                isFetching: false,
                 data: channels
             });
         }
@@ -113,7 +111,6 @@ exports.searchVideos = async (req, res, next) => {
                     total,
                     perPage,
                     q,
-                    isFetching: false,
                     data: []
                 });
             } else {
@@ -141,7 +138,6 @@ exports.searchVideos = async (req, res, next) => {
                     total,
                     perPage,
                     q,
-                    isFetching: false,
                     data: channels
                 });
             }
@@ -184,7 +180,6 @@ exports.navVideos = async (req, res, next) => {
                     prev: '',
                     total: 0,
                     perPage: 0,
-                    isFetching: false,
                     data: []
                 });
             } else {
@@ -213,7 +208,6 @@ exports.navVideos = async (req, res, next) => {
                     total,
                     q,
                     perPage,
-                    isFetching: false,
                     data: channels
                 });
             }
